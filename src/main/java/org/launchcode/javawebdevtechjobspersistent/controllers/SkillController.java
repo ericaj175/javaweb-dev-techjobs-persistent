@@ -20,15 +20,16 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
+
+
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
         model.addAttribute(new Skill ());
         return "skills/add";
     }
 
-
     @PostMapping("add")
-    public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill, @RequestParam String skillID, Errors errors, Model model) {
+    public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill, @RequestParam String skillId, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Skill");
             return "skills/add" + "skillId";
@@ -55,10 +56,7 @@ public class SkillController {
         return null;
     }
 
-
-
     @Autowired
-
 
     public SkillController(SkillRepository skillRepository)
     {
