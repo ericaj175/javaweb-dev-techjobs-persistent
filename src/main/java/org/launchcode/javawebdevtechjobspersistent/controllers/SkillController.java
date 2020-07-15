@@ -18,12 +18,12 @@ import java.util.Optional;
 @RequestMapping("skills")
 public class SkillController {
     @Autowired
-    private SkillRepository skillrRepository;
+    private SkillRepository skillRepository;
 
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
         model.addAttribute(new Skill ());
-        return "skill/add";
+        return "skills/add";
     }
 
 
@@ -58,9 +58,10 @@ public class SkillController {
 
 
     @Autowired
-    private SkillRepository skillRepository;
 
-    public SkillController(SkillRepository skillRepository) {
+
+    public SkillController(SkillRepository skillRepository)
+    {
         this.skillRepository = skillRepository;
     }
 
