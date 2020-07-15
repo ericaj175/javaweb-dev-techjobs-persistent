@@ -3,28 +3,24 @@ package org.launchcode.javawebdevtechjobspersistent.models;
 import javax.persistence.*;
 
 @Entity
-public class Job{ //publicabstractforajob class -systems for objects
-
+public class Job extends AbstractEntity { //publicabstractforajob class -systems for objects
     @Id
     @GeneratedValue
     private int id;
-
+    private String skills;
     private String name;
 
-    private String employer;
-    private String skills;
+    @ManyToOne
+    private Employer employer;
 
     public Job() {
     } //constructor-method that builds your object. takes your abstract and makes it concrete
-
-    public Job(String anEmployer, String someSkills) {
+    public Job(Employer anEmployer, String someSkills) {
         super();
         this.employer = anEmployer;
         this.skills = someSkills;
     }
-
     // Getters and setters.
-
     public String getName() {
         return name;
     }
@@ -34,10 +30,10 @@ public class Job{ //publicabstractforajob class -systems for objects
     }
 
     public String getEmployer() {
-        return employer;
+        return getEmployer();
     }
 
-    public void setEmployer(String employer) {
+    public void setEmployer(Employer employer) {
         this.employer = employer;
     }
 

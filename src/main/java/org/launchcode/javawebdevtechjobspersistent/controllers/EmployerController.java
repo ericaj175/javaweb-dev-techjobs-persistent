@@ -24,18 +24,17 @@ private EmployerRepository employerRepository;
         model.addAttribute(new Employer());
         return "employers/add";
     }
-
     @PostMapping("add")
-    public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
-                                    Errors errors, Model model) {
-
+    public String processAddEmployerForm(@ModelAttribute @Valid @RequestParam String employerID, Employer newEmployer,
+                                         Errors errors, Model model) {
         if (errors.hasErrors()) {
-            return "employers/add";
+            model.addAttribute("title", "Add Employer");
+            return "employers/add" + "employerId";
         }
-       // Employer.add(NewEvent);
-                //added
+        employerRepository.save(newEmployer);
         return "redirect:";
     }
+
 //SEND BACK IF INVALID
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
@@ -50,9 +49,6 @@ private EmployerRepository employerRepository;
         }
 
     }
-
-
-
     public Optional findById() {
         return null;
     }

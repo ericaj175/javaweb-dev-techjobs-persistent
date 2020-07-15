@@ -1,10 +1,12 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Skill extends AbstractEntity {
-
+@ManyToMany (mappedBy = "skills")
+public
 public String longerDescription;
 
     public void longerDescription() {
