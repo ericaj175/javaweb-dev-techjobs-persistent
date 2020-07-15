@@ -15,7 +15,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("employers")
 public class EmployerController {
-
+    //Add a private field of EmployerRepository type called employerRepository to EmployerController. Give this field an @Autowired annotation.
 @Autowired
 private EmployerRepository employerRepository;
 
@@ -24,9 +24,10 @@ private EmployerRepository employerRepository;
         model.addAttribute(new Employer());
         return "employers/add";
     }
+
+
     @PostMapping("add")
-    public String processAddEmployerForm(@ModelAttribute @Valid @RequestParam String employerID, Employer newEmployer,
-                                         Errors errors, Model model) {
+    public String processAddEmployerForm( @ModelAttribute @Valid Employer newEmployer, @RequestParam String employerID, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Employer");
             return "employers/add" + "employerId";
