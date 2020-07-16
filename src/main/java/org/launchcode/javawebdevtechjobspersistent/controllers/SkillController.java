@@ -20,14 +20,11 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
-
-
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
         model.addAttribute(new Skill ());
         return "skills/add";
     }
-
     @PostMapping("add")
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill, @RequestParam String skillId, Errors errors, Model model) {
         if (errors.hasErrors()) {
@@ -37,7 +34,6 @@ public class SkillController {
         skillRepository.save(newSkill);
         return "redirect:";
     }
-
     //SEND BACK IF INVALID
     @GetMapping("view/{skillId}")
     public String displayViewSkill(Model model, @PathVariable int skillId) {
@@ -50,6 +46,7 @@ public class SkillController {
         } else {
             return "redirect:../";
         }
+
 
     }
     public Optional findById() {
