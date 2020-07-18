@@ -26,11 +26,11 @@ public class SkillController {
         return "skills/add";
     }
     @PostMapping("add")
-    public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill, @RequestParam String skillId, Errors errors, Model model) {
+    public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Skill");
-            return "skills/add" + "skillId";
-        }
+            return "skills/add" ;//+ "skillId";
+        }// RequestParam String skillId,
         skillRepository.save(newSkill);
         return "redirect:";
     }
@@ -49,11 +49,6 @@ public class SkillController {
 
 
     }
-    public Optional findById() {
-        return null;
-    }
-
-    @Autowired
 
     public SkillController(SkillRepository skillRepository)
     {

@@ -10,13 +10,9 @@ import java.util.List;
 @Entity
 public class Skill extends AbstractEntity {
     @ManyToMany(mappedBy ="skills")
-    private final List<Job> jobs = Arrays.asList ();
+    private final List<Job> jobs = new ArrayList<> ();
 
-        //constructor after fields
-   // @ManyToMany (mappedBy = "skills")
-   // private final List<Skill> skills = Arrays.asList();
-
-public String description;
+    public String description;
 
     public List<Job> getJobs() {
         return jobs;
