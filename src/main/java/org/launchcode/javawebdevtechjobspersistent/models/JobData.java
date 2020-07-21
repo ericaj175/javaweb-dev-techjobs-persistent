@@ -1,15 +1,10 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
-
 import java.util.ArrayList;
-
 // This is a change made in sandbox.
-
 /**
  * Created by LaunchCode
  */
 public class JobData {
-
-
     /**
      * Returns the results of searching the Jobs data by field and search term.
      *
@@ -24,11 +19,9 @@ public class JobData {
     public static ArrayList<Job> findByColumnAndValue(String column, String value, Iterable<Job> allJobs) {
 
         ArrayList<Job> results = new ArrayList<>();
-
         if (value.toLowerCase().equals("all")){
             return (ArrayList<Job>) allJobs;
         }
-
         if (column.equals("all")){
             results = findByValue(value, allJobs);
             return results;
@@ -41,7 +34,6 @@ public class JobData {
                 results.add(job);
             }
         }
-
         return results;
     }
 
@@ -54,10 +46,8 @@ public class JobData {
         } else {
             theValue = job.getSkills().toString();
         }
-
         return theValue;
     }
-
     /**
      * Search all Job fields for the given term.
      *
@@ -67,11 +57,9 @@ public class JobData {
      */
     public static ArrayList<Job> findByValue(String value, Iterable<Job> allJobs) {
         String lower_val = value.toLowerCase();
-
         ArrayList<Job> results = new ArrayList<>();
 
         for (Job job : allJobs) {
-
             if (job.getName().toLowerCase().contains(lower_val)) {
                 results.add(job);
             } else if (job.getEmployer().toString().toLowerCase().contains(lower_val)) {
@@ -81,12 +69,8 @@ public class JobData {
             } else if (job.toString().toLowerCase().contains(lower_val)) {
                 results.add(job);
             }
-
         }
-
         return results;
     }
-
-
 }
 

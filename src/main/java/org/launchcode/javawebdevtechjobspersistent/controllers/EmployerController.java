@@ -11,24 +11,20 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
-
 @Controller
 @RequestMapping("employers")
 public class EmployerController {
     //Add a private field of EmployerRepository type called employerRepository to EmployerController. Give this field an @Autowired annotation.
 @Autowired
 private EmployerRepository employerRepository;
-
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
         model.addAttribute ( "employerID" );
         return "employers/add";
-
     }
-
     @PostMapping("add")
-    public String processAddEmployerForm( @ModelAttribute @Valid Employer newEmployer, Errors errors, Model model) {
+    public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Employer");
             return "employers/add";
@@ -36,11 +32,9 @@ private EmployerRepository employerRepository;
         employerRepository.save(newEmployer);
         return "redirect:";
     }
-
 //SEND BACK IF INVALID
     @GetMapping("view/{employerId}")
     public String displayViewEmployer(Model model, @PathVariable int employerId) {
-
         Optional optEmployer = employerRepository.findById (employerId);
         if (optEmployer.isPresent ()) {
             Employer employer = (Employer) optEmployer.get ();
@@ -50,12 +44,9 @@ private EmployerRepository employerRepository;
             return "redirect:../";
         }
     }
-
     public Optional findById() {
         return null;
     }
-
-
     }
 
     //User findByUsername(String username);

@@ -33,15 +33,10 @@ public class ListController {
     private EmployerRepository employerRepository;
     private SkillRepository skillRepository;
 
-
     @RequestMapping("")
     public String list(Model model) {
-
-
         return "list";
     }
-
-
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         Iterable<Job> jobs;
@@ -53,7 +48,6 @@ public class ListController {
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
         model.addAttribute("jobs", jobs);
-
         return "list-jobs";
     }
 }

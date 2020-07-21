@@ -1,5 +1,4 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -37,4 +36,6 @@ public class Job extends AbstractEntity { //publicabstractforajob class -systems
     public void setEmployer(Employer employer) {
         this.employer = employer;
     }
+
+
 }

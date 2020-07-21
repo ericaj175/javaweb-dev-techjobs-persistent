@@ -1,8 +1,5 @@
 package org.launchcode.javawebdevtechjobspersistent.controllers;
-
-import org.launchcode.javawebdevtechjobspersistent.models.Employer;
 import org.launchcode.javawebdevtechjobspersistent.models.Skill;
-import org.launchcode.javawebdevtechjobspersistent.models.data.EmployerRepository;
 import org.launchcode.javawebdevtechjobspersistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
-
 
 @Controller
 @RequestMapping("skills")
@@ -29,9 +25,9 @@ public class SkillController {
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Skill");
-            return "skills/add" ;//+ "skillId";
-        }// RequestParam String skillId,
-        skillRepository.save(newSkill);
+            return "skills/add";
+        }
+       skillRepository.save(newSkill);
         return "redirect:";
     }
     //SEND BACK IF INVALID
