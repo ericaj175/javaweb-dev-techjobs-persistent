@@ -25,12 +25,12 @@ private EmployerRepository employerRepository;
     }
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer, Errors errors, Model model) {
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Employer");
-            return "employers/add";
+        if (errors.hasErrors ()) {
+            model.addAttribute ( "title", "Add Employer" );
+            // return "employers/add";
         }
-        employerRepository.save(newEmployer);
-        return "redirect:";
+        employerRepository.save ( newEmployer );
+         return "@{'/employers/add'}";
     }
 //SEND BACK IF INVALID
     @GetMapping("view/{employerId}")
@@ -44,9 +44,9 @@ private EmployerRepository employerRepository;
             return "redirect:../";
         }
     }
-    public Optional findById() {
-        return null;
+    //public Optional findById() {
+       // return null;
     }
-    }
+  //  }
 
     //User findByUsername(String username);

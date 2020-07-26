@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import org.launchcode.javawebdevtechjobspersistent.models.JobData;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -31,23 +32,26 @@ public class ListController {
     }
     @Autowired
     private EmployerRepository employerRepository;
+    @Autowired
     private SkillRepository skillRepository;
 
     @RequestMapping("")
     public String list(Model model) {
+        model.addAttribute ("column", columnChoices);
         return "list";
-    }
+
+}
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
-        Iterable<Job> jobs;
-        if (column.toLowerCase().equals("all")){
-            jobs = jobRepository.findAll();
+   Iterable<Job> jobs;
+       if (column.toLowerCase().equals("all")){
+          jobs = jobRepository.findAll () ;
             model.addAttribute("title", "All Jobs");
         } else {
             jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
         model.addAttribute("jobs", jobs);
-        return "list-jobs";
+        return "list/jobs?column=all&value=View%20All";
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Optional;
 
+
 @Controller
 @RequestMapping("skills")
 public class SkillController {
@@ -25,10 +26,10 @@ public class SkillController {
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Skill");
-            return "skills/add";
-        }
+            return "skills/add" ;//+ "skillId";
+        }// RequestParam String skillId,
        skillRepository.save(newSkill);
-        return "redirect:";
+        return "skills/add";
     }
     //SEND BACK IF INVALID
     @GetMapping("view/{skillId}")

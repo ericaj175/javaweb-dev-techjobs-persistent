@@ -29,35 +29,31 @@ public class HomeController<skillObjs> {
     }
     @Autowired
     private EmployerRepository employerRepository;
+    @Autowired
     private SkillRepository skillRepository;
 
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
         model.addAttribute("title", "Add Job");
-        model.addAttribute("employers", employerRepository.findAll());
-        model.addAttribute("skills", skillRepository.findAll());
+        Model employers = model.addAttribute ( "employers", employerRepository.findAll () );
+       model.addAttribute("skills", skillRepository.findAll());
         model.addAttribute(new Job());
         return "add";
-        //System.out.println(skillRepository.findAll());
     }
     @PostMapping("add")
     public String processAddJobForm
             (@ModelAttribute @Valid Job newJob,
              Errors errors, Model model,
              @RequestParam int employerId, @RequestParam List<Integer> skills) {
-
         if (errors.hasErrors ()) {
             model.addAttribute ( "title", "Add Job" );
             return "add";
         } else {
             Optional<Employer> result = employerRepository.findById ( employerId ); List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
             newJob.setSkills(skillObjs);
-            return "redirect:";
-
-
+            return "list-jobs";
         }
     }
-
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
 

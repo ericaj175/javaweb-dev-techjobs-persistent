@@ -13,6 +13,14 @@
     <table class="job-listing">
         <tr th:each="job : ${jobs}">
             <td>
+            <td>
+                <p>ID: <span th:text="${job.id}"></span></p>
+                <p>Name: <span th:text="${job.name}"></span></p>
+                <p>Employer: <span th:text="${job.employer}"></span></p>
+                <p>Location: <span th:text="${job.location}"></span></p>
+                <p>Skill: <span th:text="${job.coreCompetency}"></span></p>
+
+
                 <p>
                     Job Id:
                     <a th:href="@{'/view/' + ${job.id}}" th:text="${job.id}"></a>
@@ -31,6 +39,8 @@
                     </ul>
                 </p>
             </td>
+            </td>
+        </tr>
         </tr>
     </table>
 
