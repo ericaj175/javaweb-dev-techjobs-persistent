@@ -9,9 +9,9 @@
 <div class="container body-content">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-
-    <table class="job-listing">
-        <tr th:each="job : ${jobs}">
+    <!--    <table th:each = "job : ${jobs}" class="job-listing">-->
+    <table class="table table-striped job-listing">
+        <tr th:each="job : ${jobs}" class="job-listing">
             <td>
             <td>
                 <p>ID: <span th:text="${job.id}"></span></p>
@@ -19,7 +19,6 @@
                 <p>Employer: <span th:text="${job.employer}"></span></p>
                 <p>Location: <span th:text="${job.location}"></span></p>
                 <p>Skill: <span th:text="${job.coreCompetency}"></span></p>
-
 
                 <p>
                     Job Id:

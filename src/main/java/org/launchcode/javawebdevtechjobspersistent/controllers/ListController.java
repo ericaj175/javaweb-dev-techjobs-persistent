@@ -24,34 +24,40 @@ public class ListController {
 
     @Autowired
     private JobRepository jobRepository;
-    static HashMap<String, String> columnChoices = new HashMap<>();
-    public ListController () {
-       columnChoices.put("all", "All");
-       columnChoices.put("employer", "Employer");
-       columnChoices.put("skill", "Skill");
+    static HashMap<String, String> columnChoices = new HashMap<> ();
+
+    public ListController() {
+        columnChoices.put ( "all", "All" );
+        columnChoices.put ( "employer", "Employer" );
+        columnChoices.put ( "skill", "Skill" );
+
     }
+
     @Autowired
     private EmployerRepository employerRepository;
     @Autowired
     private SkillRepository skillRepository;
 
+
     @RequestMapping("")
     public String list(Model model) {
-        model.addAttribute ("column", columnChoices);
+        model.addAttribute ( "column", columnChoices );
         return "list";
 
-}
+    }
+
     @RequestMapping(value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
-   Iterable<Job> jobs;
-       if (column.toLowerCase().equals("all")){
-          jobs = jobRepository.findAll () ;
-            model.addAttribute("title", "All Jobs");
+        Iterable<Job> jobs;
+        if (column.toLowerCase ().equals ( "all" )) {
+            jobs = jobRepository.findAll ();
+
+            model.addAttribute ( "title", "All Jobs" );
         } else {
-            jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
-            model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
+            jobs = JobData.findByColumnAndValue ( column, value, jobRepository.findAll () );
+            model.addAttribute ( "title", "Jobs with " + columnChoices.get ( column ) + ": " + value );
         }
-        model.addAttribute("jobs", jobs);
-        return "list/jobs?column=all&value=View%20All";
+        model.addAttribute ( "jobs", jobs );
+        return "list-jobs";
     }
 }

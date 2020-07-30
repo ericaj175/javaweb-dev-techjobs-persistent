@@ -1,7 +1,6 @@
 package org.launchcode.javawebdevtechjobspersistent.controllers;
 
 import org.launchcode.javawebdevtechjobspersistent.models.Employer;
-import org.launchcode.javawebdevtechjobspersistent.models.Job;
 import org.launchcode.javawebdevtechjobspersistent.models.data.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,11 @@ public class EmployerController {
     //Add a private field of EmployerRepository type called employerRepository to EmployerController. Give this field an @Autowired annotation.
 @Autowired
 private EmployerRepository employerRepository;
+
+    public EmployerController(EmployerRepository employerRepository) {
+        this.employerRepository = employerRepository;
+    }
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
@@ -30,7 +34,7 @@ private EmployerRepository employerRepository;
             // return "employers/add";
         }
         employerRepository.save ( newEmployer );
-         return "@{'/employers/add'}";
+         return "redirect:../";
     }
 //SEND BACK IF INVALID
     @GetMapping("view/{employerId}")
@@ -39,7 +43,7 @@ private EmployerRepository employerRepository;
         if (optEmployer.isPresent ()) {
             Employer employer = (Employer) optEmployer.get ();
             model.addAttribute ( "employer", employer );
-            return "employers/view";
+            return "view";
         } else {
             return "redirect:../";
         }
